@@ -1,0 +1,13 @@
+.dateContainer {
+  /* min-width: 100%; */
+  display: flex;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-right: 20%;
+  /* justify-content: center; */
+}
+
+.calendarr {
+  width: 250px;
+  border-radius: 8px;
+}
