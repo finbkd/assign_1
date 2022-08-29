@@ -1,5 +1,5 @@
 import express from "express";
-import { createTask, deleteTask, fetchTask, fetchTasksByDate, updateTask } from "../controllers/todoController.js";
+import { createTask, deleteTask, fetchCompletedTasksPerYear, fetchTask, fetchTasksByDate, updateTask } from "../controllers/todoController.js";
 const router = express.Router();
 
 // import { greetMe, loginUser, refresh, registerUser } from "../controllers/authController.js";
@@ -10,6 +10,7 @@ router.route("/date").post(fetchTasksByDate);
 router.route("/").post(createTask);
 router.route("/").put(updateTask);
 router.route("/").delete(deleteTask);
+router.route("/fetch").get(fetchCompletedTasksPerYear);
 // router.route("/task").delete(deleteTask);
 // router.route("/hi").post(protect, greetMe);
 

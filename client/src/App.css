@@ -10,13 +10,17 @@
 
 .switch {
   cursor: pointer;
-  /* background-color: red; */
+  background-color: #a7c7e7;
   border-radius: 8px;
   padding: 5px;
   margin-bottom: 5px;
-  width: 50px;
+  width: 120px;
+  font-weight: 500;
+
   margin: 0 auto;
-  color: white;
+  margin-top: 20px;
+  box-shadow: 0 2px 8px grey;
+  /* color: white; */
 }
 
 .calendarr {

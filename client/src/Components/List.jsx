@@ -61,7 +61,7 @@ const List = ({ date: datee }) => {
 
   return (
     <div className={styles.listContainer}>
-      <div className={styles.header}>What's the plan for today?</div>
+      <div className={styles.header}>What's the plan?</div>
       <div className={styles.addTask}>
         <input className={styles.input} ref={taskInput}></input>
         <div className={styles.addTaskBtn} onClick={addTaskHandler}>

@@ -4,4 +4,8 @@
   margin: 0 auto;
   margin-top: 30%;
   margin-left: 80%;
+  background-color: #a7c7e7;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px grey;
 }

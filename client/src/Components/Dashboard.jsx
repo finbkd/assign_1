@@ -2,11 +2,28 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 import { Bar } from "react-chartjs-2";
 import { faker } from "@faker-js/faker";
 import styles from "../styles/Dashboard.module.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const Dashboard = () => {
-  const labels = ["January", "February", "March", "April", "May", "June", "July"];
+  const [tasks, setTasks] = useState([]);
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const { data } = await axios({
+        method: "get",
+        url: "/api/task/fetch?year=2022",
+      });
+      const { dataMonth } = data;
+      // console.log(dataMonth);
+      setTasks(dataMonth);
+    };
+
+    fetchTasks();
+  }, []);
+
+  const labels = ["Jan", "Feb", "March", "April", "May", "June", "July", "August", "Sept", "Oct", "Nov", "Dec"];
 
   const options = {
     responsive: true,
@@ -21,17 +38,34 @@ const Dashboard = () => {
     },
   };
 
+  // const data = {
+  //   labels,
+  //   datasets: [
+  //     {
+  //       label: "completed tasks",
+  //       data: labels.map(() => faker.datatype.number({ min: 5, max: 10 })),
+  //       backgroundColor: "rgba(255, 99, 132, 0.5)",
+  //     },
+  //     {
+  //       label: "Total tasks",
+  //       data: labels.map(() => faker.datatype.number({ min: 10, max: 20 })),
+  //       backgroundColor: "rgba(53, 162, 235, 0.5)",
+  //     },
+  //   ],
+  // };
+
   const data = {
     labels,
     datasets: [
       {
         label: "completed tasks",
-        data: labels.map(() => faker.datatype.number({ min: 5, max: 10 })),
+        data: tasks.map((t) => t.noOfCompletedTasks),
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
       {
         label: "Total tasks",
-        data: labels.map(() => faker.datatype.number({ min: 10, max: 20 })),
+
+        data: tasks.map((t) => t.noofAllTasks),
         backgroundColor: "rgba(53, 162, 235, 0.5)",
       },
     ],
@@ -39,7 +73,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Bar className={styles.dashboard} options={options} data={data} />;
+      <Bar className={styles.dashboard} options={options} data={data} />
     </div>
   );
 };

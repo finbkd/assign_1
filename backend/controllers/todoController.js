@@ -26,8 +26,10 @@ export const fetchTasksByDate = asyncHandler(async (req, res) => {
 export const createTask = asyncHandler(async (req, res) => {
   try {
     const { task, date } = req.body;
+    const Month = parseInt(date.substring(3, 5));
+    const Year = parseInt(date.substring(6, 10));
 
-    const newTask = await Task.create({ task, date });
+    const newTask = await Task.create({ task, date, Month, Year });
 
     res.status(200).send(newTask);
   } catch (err) {
@@ -58,4 +60,18 @@ export const deleteTask = asyncHandler(async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+});
+
+export const fetchCompletedTasksPerYear = asyncHandler(async (req, res) => {
+  const { year } = req.query;
+  const dataMonth = [];
+  for (let i = 1; i < 13; i++) {
+    const allTasks = await Task.find({ Year: year, Month: i });
+    const completedTask = await Task.find({ Year: year, Month: i, completed: true });
+    const noofAllTasks = allTasks.length;
+    const noOfCompletedTasks = completedTask.length;
+    dataMonth.push({ noofAllTasks, noOfCompletedTasks });
+  }
+
+  res.status(200).json({ dataMonth });
 });
