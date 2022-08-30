@@ -4,11 +4,14 @@ import { faker } from "@faker-js/faker";
 import styles from "../styles/Dashboard.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { TailSpin } from "react-loader-spinner";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const Dashboard = () => {
   const [tasks, setTasks] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchTasks = async () => {
       const { data } = await axios({
@@ -18,6 +21,7 @@ const Dashboard = () => {
       const { dataMonth } = data;
       // console.log(dataMonth);
       setTasks(dataMonth);
+      setLoading(false);
     };
 
     fetchTasks();
@@ -73,7 +77,13 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Bar className={styles.dashboard} options={options} data={data} />
+      {!loading ? (
+        <Bar className={styles.dashboard} options={options} data={data} />
+      ) : (
+        <div className={styles.waiting}>
+          <TailSpin height="50" width="50" color="#17A9FD" ariaLabel="tail-spin-loading" radius="1" wrapperStyle={{}} wrapperClass="" visible={true} />
+        </div>
+      )}
     </div>
   );
 };

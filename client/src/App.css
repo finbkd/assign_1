@@ -9,7 +9,8 @@
 }
 
 .switch {
-  cursor: pointer;
+  position: fixed;
+
   background-color: #a7c7e7;
   border-radius: 8px;
   padding: 5px;
@@ -20,6 +21,8 @@
   margin: 0 auto;
   margin-top: 20px;
   box-shadow: 0 2px 8px grey;
+  margin-left: 20px;
+  cursor: pointer;
   /* color: white; */
 }
 

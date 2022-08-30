@@ -9,3 +9,41 @@
   border-radius: 8px;
   box-shadow: 0 3px 8px grey;
 }
+
+.waiting {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+
+  margin: 0 auto;
+  margin-top: 250px;
+}
+
+/* @media (max-width: 520px) {
+  .logincontainer {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .left {
+    width: 40%;
+  }
+  .left svg {
+    fill: #1877f2;
+    height: 28px;
+    width: 220px;
+    margin-left: -39px;
+    margin-bottom: 20px;
+  }
+  .left span {
+    padding-top: 15px;
+    color: #1c1e21;
+    font-size: 23px;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: 0.1px;
+  }
+  .right {
+    width: 50%;
+  }
+} */

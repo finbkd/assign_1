@@ -24,6 +24,9 @@ function App() {
 
   return (
     <div className="App">
+      <div className="switch" onClick={modeHandler}>
+        Switch Mode?
+      </div>
       {listmode ? (
         <div className={styles.dateContainer}>
           <Calendar className={styles.calendarr} onChange={onChange} allowPartialRange value={value} />
@@ -32,9 +35,6 @@ function App() {
         " "
       )}
       <div>
-        <div className="switch" onClick={modeHandler}>
-          Switch Mode?
-        </div>
         <div>{listmode ? <List date={date} /> : <Dashboard />}</div>
       </div>
     </div>
